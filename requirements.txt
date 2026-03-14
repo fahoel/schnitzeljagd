@@ -7,7 +7,7 @@ folium==0.15.1
 geopy==2.4.1
 
 # Image handling
-Pillow==10.3.0
+Pillow==12.1.1
 
 # GPS and location services
 plyer==2.1.0
