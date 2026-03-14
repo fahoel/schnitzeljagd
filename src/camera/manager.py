@@ -6,6 +6,7 @@ Handles photo capture functionality.
 
 from typing import Optional
 from datetime import datetime
+from src.utils.logger import logger
 
 
 class CameraManager:
@@ -25,7 +26,7 @@ class CameraManager:
         """
         # Placeholder - actual implementation will use Plyer
         # TODO: Implement using plyer.camera
-        print("Camera permissions requested")
+        logger.info("Camera permissions requested")
         return True
     
     def check_availability(self) -> bool:
@@ -50,7 +51,7 @@ class CameraManager:
             Path to the captured photo, or None if capture failed
         """
         if not self.is_available:
-            print("Camera not available")
+            logger.warning("Camera not available")
             return None
         
         # TODO: Implement using plyer.camera
@@ -59,7 +60,7 @@ class CameraManager:
         photo_path = save_path or f"photo_{timestamp}.jpg"
         self.last_photo_path = photo_path
         
-        print(f"Photo captured: {photo_path}")
+        logger.info(f"Photo captured: {photo_path}")
         return photo_path
     
     def get_last_photo(self) -> Optional[str]:

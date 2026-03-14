@@ -5,6 +5,7 @@ Handles GPS and location-based services.
 """
 
 from typing import Optional, Callable
+from src.utils.logger import logger
 
 
 class LocationService:
@@ -26,7 +27,7 @@ class LocationService:
         """
         # Placeholder - actual implementation will use Plyer
         # TODO: Implement using plyer.gps
-        print("Location permissions requested")
+        logger.info("Location permissions requested")
         return True
     
     def start_tracking(self):
@@ -34,14 +35,14 @@ class LocationService:
         if not self.is_enabled:
             self.is_enabled = True
             # TODO: Implement using plyer.gps
-            print("Location tracking started")
+            logger.info("Location tracking started")
     
     def stop_tracking(self):
         """Stop tracking user location."""
         if self.is_enabled:
             self.is_enabled = False
             # TODO: Implement using plyer.gps
-            print("Location tracking stopped")
+            logger.info("Location tracking stopped")
     
     def get_current_location(self) -> Optional[tuple]:
         """

@@ -6,6 +6,7 @@ Manages application configuration and environment variables.
 
 import os
 from typing import Optional
+from src.utils.logger import logger
 
 
 class Config:
@@ -45,11 +46,11 @@ class Config:
             try:
                 from dotenv import load_dotenv
                 load_dotenv(env_file)
-                print(f"Configuration loaded from {env_file}")
+                logger.info(f"Configuration loaded from {env_file}")
             except ImportError:
-                print("python-dotenv not installed, skipping .env file")
+                logger.warning("python-dotenv not installed, skipping .env file")
         else:
-            print(f"No {env_file} file found, using defaults")
+            logger.info(f"No {env_file} file found, using defaults")
     
     @classmethod
     def get_info(cls) -> dict:

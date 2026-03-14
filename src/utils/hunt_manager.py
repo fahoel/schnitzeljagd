@@ -5,6 +5,7 @@ Manages scavenger hunt challenges, progress, and scoring.
 """
 
 from typing import List, Dict, Optional
+from src.utils.logger import logger
 
 
 class HuntManager:
@@ -77,7 +78,10 @@ class HuntManager:
         if not challenge:
             return False
         
-        # Simple distance calculation (should use proper geodesic)
+        # PLACEHOLDER: Simple distance calculation
+        # TODO: Replace with geopy.distance.geodesic() for accurate geodesic distances
+        # Current implementation uses Euclidean approximation which is inaccurate
+        # at higher latitudes (like Hannover at 52.3759°N)
         lat_diff = abs(user_latitude - challenge["latitude"])
         lon_diff = abs(user_longitude - challenge["longitude"])
         distance = ((lat_diff ** 2 + lon_diff ** 2) ** 0.5) * 111000  # meters
@@ -102,7 +106,7 @@ class HuntManager:
         self.completed_challenges.append(challenge_id)
         self.current_score += challenge["points"]
         
-        print(f"Challenge completed: {challenge['name']} (+{challenge['points']} points)")
+        logger.info(f"Challenge completed: {challenge['name']} (+{challenge['points']} points)")
         return True
     
     def get_progress(self) -> Dict:

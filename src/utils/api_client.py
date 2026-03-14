@@ -5,6 +5,7 @@ Handles communication with backend API.
 """
 
 from typing import Dict, Optional, List
+from src.utils.logger import logger
 
 
 class APIClient:
@@ -34,7 +35,7 @@ class APIClient:
             True if authentication successful, False otherwise
         """
         # TODO: Implement using requests library
-        print(f"Authenticating user: {username}")
+        logger.info(f"Authenticating user: {username}")
         self.auth_token = "dummy_token"  # Placeholder
         return True
     
@@ -46,7 +47,7 @@ class APIClient:
             List of hunt dictionaries
         """
         # TODO: Implement using requests library
-        print("Fetching available hunts")
+        logger.info("Fetching available hunts")
         return []  # Placeholder
     
     def get_hunt_details(self, hunt_id: str) -> Optional[Dict]:
@@ -60,7 +61,7 @@ class APIClient:
             Hunt details dictionary or None if not found
         """
         # TODO: Implement using requests library
-        print(f"Fetching hunt details: {hunt_id}")
+        logger.info(f"Fetching hunt details: {hunt_id}")
         return None  # Placeholder
     
     def upload_photo(self, photo_path: str, challenge_id: str,
@@ -79,7 +80,7 @@ class APIClient:
             True if upload successful, False otherwise
         """
         # TODO: Implement using requests library
-        print(f"Uploading photo: {photo_path} for challenge: {challenge_id}")
+        logger.info(f"Uploading photo: {photo_path} for challenge: {challenge_id}")
         return True  # Placeholder
     
     def sync_progress(self, completed_challenges: List[str], score: int) -> bool:
@@ -94,7 +95,7 @@ class APIClient:
             True if sync successful, False otherwise
         """
         # TODO: Implement using requests library
-        print(f"Syncing progress: {len(completed_challenges)} challenges, {score} points")
+        logger.info(f"Syncing progress: {len(completed_challenges)} challenges, {score} points")
         return True  # Placeholder
     
     def get_leaderboard(self, hunt_id: str) -> List[Dict]:
@@ -108,5 +109,5 @@ class APIClient:
             List of leaderboard entries
         """
         # TODO: Implement using requests library
-        print(f"Fetching leaderboard for hunt: {hunt_id}")
+        logger.info(f"Fetching leaderboard for hunt: {hunt_id}")
         return []  # Placeholder

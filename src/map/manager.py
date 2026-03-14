@@ -99,8 +99,10 @@ class MapManager:
         
         marker = self.markers[marker_index]
         
-        # Simplified distance calculation (should use proper geodesic calculation)
-        # This is a placeholder - use geopy for accurate distances
+        # PLACEHOLDER: Simplified distance calculation
+        # TODO: Replace with geopy.distance.geodesic() for accurate geodesic distances
+        # Current implementation uses Euclidean approximation which is inaccurate
+        # at higher latitudes (like Hannover at 52.3759°N)
         lat_diff = abs(self.current_location["latitude"] - marker["latitude"])
         lon_diff = abs(self.current_location["longitude"] - marker["longitude"])
         

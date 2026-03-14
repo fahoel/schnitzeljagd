@@ -7,6 +7,7 @@ Manages local storage and uploading of photos.
 import os
 from typing import List, Optional, Dict
 from datetime import datetime
+from src.utils.logger import logger
 
 
 class PhotoStorage:
@@ -55,7 +56,7 @@ class PhotoStorage:
         self.photos.append(photo_metadata)
         self.upload_queue.append(photo_metadata)
         
-        print(f"Photo saved: {photo_path}")
+        logger.info(f"Photo saved: {photo_path}")
         return photo_metadata
     
     def get_all_photos(self) -> List[Dict]:
@@ -86,7 +87,7 @@ class PhotoStorage:
         for photo in self.photos:
             if photo["path"] == photo_path:
                 photo["uploaded"] = True
-                print(f"Photo marked as uploaded: {photo_path}")
+                logger.info(f"Photo marked as uploaded: {photo_path}")
                 break
     
     def compress_photo(self, photo_path: str, quality: int = 85) -> str:
@@ -101,7 +102,7 @@ class PhotoStorage:
             Path to the compressed photo
         """
         # TODO: Implement using Pillow
-        print(f"Compressing photo: {photo_path} (quality: {quality})")
+        logger.debug(f"Compressing photo: {photo_path} (quality: {quality})")
         return photo_path  # Placeholder
     
     def generate_thumbnail(self, photo_path: str, size: tuple = (200, 200)) -> str:
@@ -117,5 +118,5 @@ class PhotoStorage:
         """
         # TODO: Implement using Pillow
         thumbnail_path = photo_path.replace(".jpg", "_thumb.jpg")
-        print(f"Generating thumbnail: {thumbnail_path}")
+        logger.debug(f"Generating thumbnail: {thumbnail_path}")
         return thumbnail_path
